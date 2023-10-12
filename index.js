@@ -1,10 +1,15 @@
 'use strict';
 
 const inputModule = require('./utils/input.js');
+const createModule = require('./commands/create.js');
+const displayModule = require('./commands/display.js');
+const updateModule = require('./commands/update.js');
+const deleteModule = require('./commands/delete.js');
 
 console.log(`
 This program is a command line based password manager. 
 This program allows you to store your accounts with their username and password. Passwords are encrypted using bcrypt.
+
 The commands for this progam are:
 create - create and store a new account
 display - display an existing accounts details  
@@ -20,7 +25,15 @@ async function main() {
     // Question and choices are passed into getUserInput function.
     while (anotherCommand) {
         const userCommand = inputModule.getUserInput(question, choices);
-        console.log(userCommand);
+        if (userCommand === 'create') {
+            createModule.createAccount();
+        } else if (userCommand === 'display') {
+            displayModule.getAccountToDisplay();
+        } else if (userCommand === 'update') {
+            updateModule.updateAccount();
+        } else if (userCommand === 'delete') {
+            deleteModule.deleteAccount();
+        }
         runAgain() ? anotherCommand = true : anotherCommand = false; 
     }
     console.log('Thank you for using this program');
