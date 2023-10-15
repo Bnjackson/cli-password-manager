@@ -1,13 +1,13 @@
 const bcrypt = require('bcrypt');
 
 async function encryptPassword(account) {
-    await bcrypt.hash(account.password, 10, (err, hash) => {
-        if (err) {
-            console.error(`Hashing password failed: ${err}`);
-        } else {
-            account.password = hash;            
-        }
-    });
+    try {
+        const hash = await bcrypt.hash(account.password, 10);
+        account.password = hash;
+        console.log(hash, account);    
+    } catch (err) {
+        console.error(`Hashing password failed: ${err}`);
+    }
     return account;
 }
 
@@ -17,5 +17,5 @@ function verifyPassword(password, account) {
 
 module.exports = {
     encryptPassword, 
-    decryptPassword
+    verifyPassword
 }
