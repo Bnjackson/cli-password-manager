@@ -29,15 +29,33 @@ function getUserAccountInfo(question) {
     }
 }
 
-// function getUserAccountChoice(accounts) {
-//     const userChoice = readlineSync.question('What ')
-//     function outputAccountChoices(Accounts) {
+async function getUserAccountChoice(accounts) {
+    const userChoice = readlineSync.question('What is the name of the account you wish to view: ');
+    const userAccountChoice = checkUserAccountChoice(userChoice, accounts);
+    if (userAccountChoice) {
+        return userAccountChoice
+    } else {
+        getUserAccountChoice(accounts);
+    }
+    function checkUserAccountChoice(userChoice, accounts) {
+        for (let i = 0; i < accounts.length; i++) {
+            if (userChoice === accounts[i].accountName) {
+                return accounts[i];
+            }
+        }
+        console.log('Inputted user account does not match account in database.');
+        return false;
+    }
+}
 
-//     }
-// }
+async function getUserPasswordInput() {
+    const userPasswordInput = readlineSync.question('Enter your account password: ');
+    return userPasswordInput;
+}
 
 module.exports = {
     getUserInput,
     getUserAccountInfo,
-    getUserAccountChoice
+    getUserAccountChoice,
+    getUserPasswordInput
 }
