@@ -14,8 +14,7 @@ The commands for this progam are:
 create - create and store a new account
 display - display an existing accounts details  
 update - update an existing accounts details
-delete - delete an existing account
-`);
+delete - delete an existing account`);
 
 async function main() {
     let anotherCommand = true;
@@ -26,13 +25,13 @@ async function main() {
     while (anotherCommand) {
         const userCommand = inputModule.getUserInput(question, choices);
         if (userCommand === 'create') {
-            createModule.createAccount();
+            await createModule.createAccount();
         } else if (userCommand === 'display') {
-            displayModule.getAccountToDisplay();
+            await displayModule.getAccountToDisplay();
         } else if (userCommand === 'update') {
-            updateModule.updateAccount();
+            await updateModule.updateAccount();
         } else if (userCommand === 'delete') {
-            deleteModule.deleteAccount();
+            await deleteModule.deleteAccount();
         }
         runAgain() ? anotherCommand = true : anotherCommand = false; 
     }
@@ -51,4 +50,3 @@ function runAgain() {
 }
 
 main();
-
