@@ -1,11 +1,11 @@
 const fs = require('fs');
 
-const filePath = '../data/accounts.json';
+const filePath = './data/accounts.json';
 
 async function getAccountsData() {
     try {
-        const data = await fs.readFile(filePath);
-        console.log(JSON.parse(data));
+        const data = await fs.readFileSync(filePath);
+        return JSON.parse(data);
     } catch (error) {
         console.error(`Error getting data from accounts file:
         ${error}`);
@@ -14,10 +14,11 @@ async function getAccountsData() {
 
 async function writeAccountsFile(updatedAccounts) {
     try {
-        await fs.writeFile(filePath, updatedAccounts);
+        const data = JSON.stringify(updatedAccounts, null, 2);
+        await fs.writeFileSync(filePath, data, 'utf8');
         console.log('Accounts successfully written');
     } catch (error) {
-        console.error(`Error adding account to accounts file`)
+        console.error(`Error adding account to accounts file:${error}`)
     }
 }
 
