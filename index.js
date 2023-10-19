@@ -29,7 +29,7 @@ async function main() {
         } else if (userCommand === 'display') {
             await displayModule.getAccountToDisplay();
         } else if (userCommand === 'update') {
-            await updateModule.updateAccount();
+            await updateModule.getAccountToUpdate();
         } else if (userCommand === 'delete') {
             await deleteModule.deleteAccount();
         }
