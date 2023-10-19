@@ -27,7 +27,9 @@ async function getPasswordForAccount(account) {
 }
 
 async function displayAccount(account) {
-    console.log(account);
+    console.log(`Account name: ${account.accountName}`);
+    console.log(`Username: ${account.username}`);
+    console.log(`Password: ${account.password}`);
 }
 
 module.exports = {
