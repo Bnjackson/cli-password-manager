@@ -30,12 +30,12 @@ function getUserAccountInfo(question) {
 }
 
 async function getUserAccountChoice(accounts) {
-    const userChoice = readlineSync.question('What is the name of the account you wish to view: ');
+    const userChoice = readlineSync.question('What is the name of the account: ');
     const userAccountChoice = checkUserAccountChoice(userChoice, accounts);
     if (userAccountChoice) {
         return userAccountChoice
     } else {
-        getUserAccountChoice(accounts);
+        return getUserAccountChoice(accounts);
     }
     function checkUserAccountChoice(userChoice, accounts) {
         for (let i = 0; i < accounts.length; i++) {
